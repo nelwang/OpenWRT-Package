@@ -11,14 +11,11 @@ jobs:
       fail-fast: false
       matrix:
         release:
-          - master
-          - 23.05.2
-          - 23.05.0
-          - 22.03.2
+          - 23.05.3
+
         arch:
-          - arm_cortex-a15_neon-vfpv4
-          - mips_24kc
-          - x86_64
+          - aarch64_cortex-a53
+
 
     steps:
       - uses: actions/checkout@v3
@@ -32,7 +29,7 @@ jobs:
           ARCH: ${{ matrix.arch }}-${{ matrix.release }}
           ARTIFACTS_DIR: ${{ github.workspace }}/artifacts
           FEED_DIR: ${{ github.workspace }}/feed
-          PACKAGES: vim privoxy
+          PACKAGES: dnsmasq-full
 
       - name: Verify packages saved
         run: find artifacts/bin/packages/${{ matrix.arch }}/packages/ -maxdepth 1 -name '*.ipk' -type f | grep .
