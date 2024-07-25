@@ -29,7 +29,7 @@ jobs:
           ARCH: ${{ matrix.arch }}-${{ matrix.release }}
           ARTIFACTS_DIR: ${{ github.workspace }}/artifacts
           FEED_DIR: ${{ github.workspace }}/feed
-          PACKAGES: dnsmasq-full
+          PACKAGES: dnsmasq-full vim
 
       - name: Verify packages saved
         run: find artifacts/bin/packages/${{ matrix.arch }}/packages/ -maxdepth 1 -name '*.ipk' -type f | grep .
